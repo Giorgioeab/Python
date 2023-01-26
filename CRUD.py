@@ -15,7 +15,6 @@ cursor = conexao.cursor()
 def inserir():
     novo_aluno = input('Digite o nome do aluno: ')
     novo_curso = input('Digite o curso do aluno: ')
-
     comandoSQL = f'INSERT INTO aluno (nome_aluno, curso_aluno) values ("{novo_aluno}","{novo_curso}")'
     cursor.execute(comandoSQL)
     conexao.commit()
@@ -25,7 +24,8 @@ def consultarTodos():
     comandoSQL = f'SELECT * FROM aluno'
     cursor.execute(comandoSQL)
     resultadoDaConsulta = cursor.fetchall()
-    print(resultadoDaConsulta)
+    df = pd.DataFrame(resultadoDaConsulta)
+    print(df)
 
 
 def consultaAlunoPorID():
@@ -33,8 +33,8 @@ def consultaAlunoPorID():
     comandoSQL = f'SELECT nome_aluno, curso_aluno FROM aluno WHERE id_aluno={idAluno}'
     cursor.execute(comandoSQL)
     resultadoDaConsulta = cursor.fetchall()
-    print(resultadoDaConsulta)
-
+    df = pd.DataFrame(resultadoDaConsulta)
+    print(df)
 
 def atualizar():
     atualizaAluno = input('Atualize para o nome: ')
