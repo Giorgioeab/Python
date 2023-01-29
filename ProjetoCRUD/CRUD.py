@@ -61,13 +61,13 @@ class BaseDados:
                 resultadoConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoConsulta)
                 print(f'{df} \n')
-            case 4:
+            case 5:
                 comandoSQL = f'SELECT * FROM aluno'
                 cursor.execute(comandoSQL)
                 resultadoDaConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoDaConsulta)
                 print(f'{df} \n')
-            case 5:
+            case 6:
                 self.menu()
             case _:
                 print('Seleção inválida, tente novamente')
