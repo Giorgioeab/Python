@@ -42,6 +42,7 @@ class BaseDados:
                 resultadoConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df}{"-" * 50}\n')
+                self.consultas()
             case 2:
                 nome_aluno = input('Digite o nome do aluno para a consulta: ')
                 comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
@@ -50,6 +51,7 @@ class BaseDados:
                 resultadoConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
+                self.consultas()
             case 3:
                 sobrenome_aluno = input('Digite o sobrenome do aluno para a consulta: ')
                 comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
@@ -58,6 +60,7 @@ class BaseDados:
                 resultadoConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
+                self.consultas()
             case 4:
                 curso_aluno = input('Digite o nome curso que deseja consultar: ')
                 comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
@@ -66,6 +69,7 @@ class BaseDados:
                 resultadoConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
+                self.consultas()
             case 5:
                 comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
                              f' FROM aluno'
@@ -73,6 +77,7 @@ class BaseDados:
                 resultadoConsulta = cursor.fetchall()
                 df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
+                self.consultas()
             case 6:
                 self.menu()
             case _:
@@ -98,6 +103,7 @@ class BaseDados:
                              f'curso_aluno="{atualiza_curso}" where id_aluno={idAluno}'
                 cursor.execute(comandoSQL)
                 conexao.commit()
+                self.atualizacoes()
             case 2:
                 nome_aluno = input('Digite o nome do Aluno a ser atualizado: ')
                 atualiza_aluno = input('Atualize o nome do aluno: ')
@@ -109,6 +115,7 @@ class BaseDados:
                              f'curso_aluno="{atualiza_curso}" where nome_aluno="{nome_aluno}"'
                 cursor.execute(comandoSQL)
                 conexao.commit()
+                self.atualizacoes()
             case 3:
                 sobrenome_aluno = input('Digite o sobrenome do aluno a ser atualizado: ')
                 atualiza_aluno = input('Atualize o nome do aluno: ')
@@ -120,6 +127,7 @@ class BaseDados:
                              f'curso_aluno="{atualiza_curso}" where sobrenome_aluno="{sobrenome_aluno}"'
                 cursor.execute(comandoSQL)
                 conexao.commit()
+                self.atualizacoes()
             case 4:
                 self.menu()
             case _:
@@ -139,16 +147,19 @@ class BaseDados:
                 comandoSQL = f'DELETE FROM aluno WHERE id_aluno = {idAluno}'
                 cursor.execute(comandoSQL)
                 conexao.commit()
+                self.excluir()
             case 2:
                 nome_aluno = input('Digite o nome do aluno a ser excluido: ')
                 comandoSQL = f'DELETE FROM aluno WHERE nome_aluno="{nome_aluno}"'
                 cursor.execute(comandoSQL)
                 conexao.commit()
+                self.excluir()
             case 3:
                 sobrenome_aluno = input('Digite o sobrenome do aluno a ser excluido: ')
                 comandoSQL = f'DELETE FROM aluno WHERE sobrenome_aluno="{sobrenome_aluno}"'
                 cursor.execute(comandoSQL)
                 conexao.commit()
+                self.excluir()
             case 4:
                 self.menu()
             case _:
