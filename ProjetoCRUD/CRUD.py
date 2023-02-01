@@ -11,6 +11,7 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
+
 class BaseDados:
     def inserir(self):
         novo_aluno = input('Digite o primeiro nome do aluno: ')
@@ -35,37 +36,42 @@ class BaseDados:
         match menu_consultas:
             case 1:
                 idAluno = int(input('Digite o id do aluno para a consulta: '))
-                comandoSQL = f'SELECT * FROM aluno WHERE id_aluno={idAluno}'
+                comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
+                             f' FROM aluno WHERE id_aluno={idAluno}'
                 cursor.execute(comandoSQL)
                 resultadoConsulta = cursor.fetchall()
-                df = pd.DataFrame(resultadoConsulta)
-                print(f'{df}{"-"*50}\n')
+                df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
+                print(f'{df}{"-" * 50}\n')
             case 2:
                 nome_aluno = input('Digite o nome do aluno para a consulta: ')
-                comandoSQL = f'SELECT * FROM aluno WHERE nome_aluno="{nome_aluno}"'
+                comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
+                             f' FROM aluno WHERE nome_aluno="{nome_aluno}"'
                 cursor.execute(comandoSQL)
                 resultadoConsulta = cursor.fetchall()
-                df = pd.DataFrame(resultadoConsulta)
+                df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
             case 3:
                 sobrenome_aluno = input('Digite o sobrenome do aluno para a consulta: ')
-                comandoSQL = f'SELECT * FROM aluno WHERE sobrenome_aluno="{sobrenome_aluno}"'
+                comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
+                             f' FROM aluno WHERE sobrenome_aluno="{sobrenome_aluno}"'
                 cursor.execute(comandoSQL)
                 resultadoConsulta = cursor.fetchall()
-                df = pd.DataFrame(resultadoConsulta)
+                df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
             case 4:
                 curso_aluno = input('Digite o nome curso que deseja consultar: ')
-                comandoSQL = f'SELECT * FROM aluno WHERE curso_aluno="{curso_aluno}"'
+                comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
+                             f' FROM aluno WHERE curso_aluno="{curso_aluno}"'
                 cursor.execute(comandoSQL)
                 resultadoConsulta = cursor.fetchall()
-                df = pd.DataFrame(resultadoConsulta)
+                df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
             case 5:
-                comandoSQL = f'SELECT * FROM aluno'
+                comandoSQL = f'SELECT id_aluno, nome_aluno, sobrenome_aluno, curso_aluno, cpf_aluno' \
+                             f' FROM aluno'
                 cursor.execute(comandoSQL)
-                resultadoDaConsulta = cursor.fetchall()
-                df = pd.DataFrame(resultadoDaConsulta)
+                resultadoConsulta = cursor.fetchall()
+                df = pd.DataFrame(resultadoConsulta, columns=['Matrícula', 'Nome', 'Sobrenome', 'Curso', 'CPF'])
                 print(f'{df} \n')
             case 6:
                 self.menu()
